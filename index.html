@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Techfest 2025 // Asia's Largest Science & Technology Festival | IIT Bombay</title>
+  <meta name="description" content="Official Landing Experience for Techfest IIT Bombay. Asia's Largest Science & Technology Festival featuring International Robowars, Technoholix, Keynote Summits, and Workshops.">
+  <meta name="theme-color" content="#030712">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Techfest 2025 | IIT Bombay">
+  <meta property="og:description" content="A Simulated Paradigm - Asia's Largest Science & Technology Festival at Indian Institute of Technology Bombay.">
+  <meta property="og:type" content="website">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@500;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Ambient Audio Indicator / Sound Toggle HUD -->
+  <div class="hud-audio-bar" id="hudAudioBar">
+    <button class="sound-toggle-btn" id="soundToggleBtn" aria-label="Toggle Sound Effects" title="Toggle Futuristic Sound FX">
+      <span class="sound-icon-wave">
+        <span class="wave-bar"></span>
+        <span class="wave-bar"></span>
+        <span class="wave-bar"></span>
+        <span class="wave-bar"></span>
+      </span>
+      <span class="sound-label" id="soundLabel">SFX: MUTED</span>
+    </button>
+    <div class="edition-ticker">
+      <span class="pulse-indicator"></span>
+      <span>IIT BOMBAY // 29TH EDITION // DEC 22-24, 2025</span>
+    </div>
+  </div>
+
+  <!-- Background Canvas Particle Grid (Strictly 2D Canvas - Zero 3D Assets) -->
+  <canvas id="neuralCanvas" class="neural-canvas"></canvas>
+  <div class="cyber-grid-overlay"></div>
+  <div class="ambient-glow glow-top"></div>
+  <div class="ambient-glow glow-bottom"></div>
+
+  <!-- Navigation -->
+  <header class="cyber-header" id="navbar">
+    <div class="header-container">
+      <a href="#hero" class="brand-logo" data-sfx="click">
+        <div class="logo-mark">
+          <svg viewBox="0 0 40 40" class="hex-logo" fill="none">
+            <polygon points="20,2 38,11 38,29 20,38 2,29 2,11" stroke="#00F0FF" stroke-width="2.5" fill="rgba(0, 240, 255, 0.08)"/>
+            <polygon points="20,8 32,14 32,26 20,32 8,26 8,14" stroke="#7928CA" stroke-width="2" fill="rgba(121, 40, 202, 0.15)"/>
+            <circle cx="20" cy="20" r="4" fill="#00F0FF"/>
+            <line x1="20" y1="2" x2="20" y2="8" stroke="#00F0FF" stroke-width="2"/>
+            <line x1="38" y1="20" x2="32" y2="20" stroke="#00F0FF" stroke-width="2"/>
+            <line x1="2" y1="20" x2="8" y2="20" stroke="#00F0FF" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="main-title">TECHFEST</span>
+          <span class="sub-badge">IIT BOMBAY</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="nav-links" id="navLinks">
+        <a href="#pillars" class="nav-link" data-sfx="hover">Pillars</a>
+        <a href="#competitions" class="nav-link" data-sfx="hover">Competitions</a>
+        <a href="#workshops" class="nav-link" data-sfx="hover">Workshops</a>
+        <a href="#technoholix" class="nav-link" data-sfx="hover">Technoholix</a>
+        <a href="#keynotes" class="nav-link" data-sfx="hover">Keynotes</a>
+        <a href="#schedule" class="nav-link" data-sfx="hover">Schedule</a>
+        <a href="#ca-portal" class="nav-link ca-link" data-sfx="hover">CA Portal</a>
+      </nav>
+
+      <!-- Action Button -->
+      <div class="header-actions">
+        <button class="btn btn-primary register-modal-trigger" id="openRegModalHeader" data-sfx="click">
+          <span class="btn-glitch-text">REGISTER NOW</span>
+          <span class="btn-arrow">→</span>
+        </button>
+        <button class="mobile-menu-toggle" id="mobileMenuBtn" aria-label="Toggle navigation menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="drawer-header">
+      <span class="drawer-title">NAVIGATION TERMINAL</span>
+      <button class="drawer-close" id="drawerCloseBtn">&times;</button>
+    </div>
+    <div class="drawer-links">
+      <a href="#pillars" class="drawer-link">01 // Festival Pillars</a>
+      <a href="#competitions" class="drawer-link">02 // Flagship Competitions</a>
+      <a href="#workshops" class="drawer-link">03 // Tech Workshops</a>
+      <a href="#technoholix" class="drawer-link">04 // Technoholix EDM</a>
+      <a href="#keynotes" class="drawer-link">05 // World Keynotes</a>
+      <a href="#schedule" class="drawer-link">06 // 3-Day Schedule</a>
+      <a href="#ca-portal" class="drawer-link">07 // CA Program Hub</a>
+      <button class="btn btn-primary drawer-btn register-modal-trigger">REGISTER PASS</button>
+    </div>
+  </div>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero-section" id="hero">
+      <div class="hero-container">
+        <!-- HUD Bracket Borders -->
+        <div class="hud-frame top-left"></div>
+        <div class="hud-frame top-right"></div>
+        <div class="hud-frame bottom-left"></div>
+        <div class="hud-frame bottom-right"></div>
+
+        <div class="hero-badge-wrap">
+          <div class="cyber-chip">
+            <span class="chip-status"></span>
+            <span class="chip-text">PATRONAGE: UNESCO & MAKE IN INDIA</span>
+          </div>
+          <div class="cyber-chip chip-glow">
+            <span class="chip-icon">◈</span>
+            <span class="chip-text">ASIA'S LARGEST TECH FESTIVAL</span>
+          </div>
+        </div>
+
+        <h1 class="hero-title">
+          <span class="glitch-line" data-text="A SIMULATED">A SIMULATED</span>
+          <span class="gradient-line">PARADIGM</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          Welcome to the 29th edition of <strong>Techfest, IIT Bombay</strong>. Where sentient computation, high-velocity robotics, interplanetary symposia, and electrifying nightscapes converge into an unforgettable technological odyssey.
+        </p>
+
+        <!-- Countdown Timer HUD -->
+        <div class="countdown-hud" id="countdownHud">
+          <div class="hud-header">
+            <span class="hud-dot"></span>
+            <span class="hud-title">MISSION COUNTDOWN // FESTIVAL COMMENCEMENT</span>
+          </div>
+          <div class="countdown-grid">
+            <div class="time-block">
+              <span class="time-val" id="daysVal">56</span>
+              <span class="time-label">DAYS</span>
+            </div>
+            <div class="time-separator">:</div>
+            <div class="time-block">
+              <span class="time-val" id="hoursVal">14</span>
+              <span class="time-label">HOURS</span>
+            </div>
+            <div class="time-separator">:</div>
+            <div class="time-block">
+              <span class="time-val" id="minVal">28</span>
+              <span class="time-label">MINUTES</span>
+            </div>
+            <div class="time-separator">:</div>
+            <div class="time-block">
+              <span class="time-val" id="secVal">45</span>
+              <span class="time-label">SECONDS</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA Action Cluster -->
+        <div class="hero-actions">
+          <button class="btn btn-primary btn-large register-modal-trigger" data-sfx="click">
+            <span>GET FREE FESTIVAL PASS</span>
+            <svg class="cta-svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </button>
+          <a href="#competitions" class="btn btn-secondary btn-large" data-sfx="click">
+            <span>EXPLORE COMPETITIONS</span>
+            <span class="btn-pulse-dot"></span>
+          </a>
+        </div>
+
+        <!-- Metric Telemetry Cards -->
+        <div class="telemetry-bar">
+          <div class="telemetry-item">
+            <span class="tele-val">175,000+</span>
+            <span class="tele-lbl">Global Footfall</span>
+          </div>
+          <div class="telemetry-divider"></div>
+          <div class="telemetry-item">
+            <span class="tele-val">2,500+</span>
+            <span class="tele-lbl">Colleges Reached</span>
+          </div>
+          <div class="telemetry-divider"></div>
+          <div class="telemetry-item">
+            <span class="tele-val">₹50,00,000+</span>
+            <span class="tele-lbl">Prize Vault</span>
+          </div>
+          <div class="telemetry-divider"></div>
+          <div class="telemetry-item">
+            <span class="tele-val">50+</span>
+            <span class="tele-lbl">Nations Represented</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIVE TELEMETRY TICKER -->
+    <div class="live-ticker-wrap">
+      <div class="ticker-label">LIVE SYSTEM FEED</div>
+      <div class="ticker-track">
+        <div class="ticker-content">
+          <span>⚡ INTERNATIONAL ROBOWARS ARENA REGISTRATIONS OPEN</span>
+          <span class="star-sep">✦</span>
+          <span>🚀 ISRO GAGANYAAN ASTRONAUT CONCLAVE CONFIRMED</span>
+          <span class="star-sep">✦</span>
+          <span>🤖 UNITREE G1 HUMANOID BOT LIVE ROBOTICS DEMO IN GYMKHANA</span>
+          <span class="star-sep">✦</span>
+          <span>💻 ZEROCODE AI PROMPT HACKATHON: ₹3,00,000 PRIZE POOL</span>
+          <span class="star-sep">✦</span>
+          <span>✨ TECHNOHOLIX DRONE SWARM SPECTACLE: 500+ AUTONOMOUS LIGHT DRONES</span>
+          <span class="star-sep">✦</span>
+          <span>🎓 IIT BOMBAY CERTIFIED WORKSHOPS ENROLLMENT ACTIVE</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CORE FESTIVAL PILLARS -->
+    <section class="section-wrap" id="pillars">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">01 // DOMAIN ARCHITECTURE</div>
+          <h2 class="section-heading">SIX DIMENSIONS OF TECHFEST</h2>
+          <p class="section-subtext">Engineered across three electrifying days at the prestigious 550-acre IIT Bombay campus.</p>
+        </div>
+
+        <div class="pillars-grid">
+          <!-- Pillar 1 -->
+          <div class="pillar-card" data-sfx="hover">
+            <div class="card-glow"></div>
+            <div class="pillar-top">
+              <div class="pillar-icon-box">
+                <svg viewBox="0 0 24 24" width="30" height="30" stroke="#00F0FF" stroke-width="2" fill="none">
+                  <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+                  <polyline points="2 17 12 22 22 17"/>
+                  <polyline points="2 12 12 17 22 12"/>
+                </svg>
+              </div>
+              <span class="pillar-code">SEG-01</span>
+            </div>
+            <h3 class="pillar-title">Robowars & Combat</h3>
+            <p class="pillar-desc">
+              Asia's fiercest combat robotics tournament. Watch 60kg and 15kg custom pneumatic and spinning-drum battlebots clash in a reinforced bulletproof polycarbonate arena.
+            </p>
+            <div class="pillar-footer">
+              <span class="tag-pill">₹15,00,000+ Pool</span>
+              <span class="link-arrow">Explore →</span>
+            </div>
+          </div>
+
+          <!-- Pillar 2 -->
+          <div class="pillar-card" data-sfx="hover">
+            <div class="card-glow"></div>
+            <div class="pillar-top">
+              <div class="pillar-icon-box">
+                <svg viewBox="0 0 24 24" width="30" height="30" stroke="#7928CA" stroke-width="2" fill="none">
+                  <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+                  <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+                  <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
+                  <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
+                </svg>
+              </div>
+              <span class="pillar-code">SEG-02</span>
+            </div>
+            <h3 class="pillar-title">Exhibitions & Humano-Tech</h3>
+            <p class="pillar-desc">
+              Cutting-edge international technology exhibitions featuring the Unitree G1 Humanoid, autonomous robotic quadrupeds, DRDO defense systems, and bionic prosthetics.
+            </p>
+            <div class="pillar-footer">
+              <span class="tag-pill">Global Tech Showcase</span>
+              <span class="link-arrow">Explore →</span>
+            </div>
+          </div>
+
+          <!-- Pillar 3 -->
+          <div class="pillar-card" data-sfx="hover">
+            <div class="card-glow"></div>
+            <div class="pillar-top">
+              <div class="pillar-icon-box">
+                <svg viewBox="0 0 24 24" width="30" height="30" stroke="#FF0080" stroke-width="2" fill="none">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polygon points="10 8 16 12 10 16 10 8" fill="#FF0080"/>
+                </svg>
+              </div>
+              <span class="pillar-code">SEG-03</span>
+            </div>
+            <h3 class="pillar-title">Technoholix EDM & Lasers</h3>
+            <p class="pillar-desc">
+              Where high technology transcends into sheer performance art. Synchronized 500-drone swarms, holographic projection mapping, pyrotechnics, and international EDM sensations.
+            </p>
+            <div class="pillar-footer">
+              <span class="tag-pill">Gymkhana Arena</span>
+              <span class="link-arrow">Explore →</span>
+            </div>
+          </div>
+
+          <!-- Pillar 4 -->
+          <div class="pillar-card" data-sfx="hover">
+            <div class="card-glow"></div>
+            <div class="pillar-top">
+              <div class="pillar-icon-box">
+                <svg viewBox="0 0 24 24" width="30" height="30" stroke="#00F0FF" stroke-width="2" fill="none">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                  <circle cx="9" cy="7" r="4"/>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+              </div>
+              <span class="pillar-code">SEG-04</span>
+            </div>
+            <h3 class="pillar-title">Keynote Summits & Conclaves</h3>
+            <p class="pillar-desc">
+              Engage with visionary thinkers, Nobel Laureates, Chief of Defence Staff, ISRO commanders, and tech founders addressing humanity's grandest technological crossroads.
+            </p>
+            <div class="pillar-footer">
+              <span class="tag-pill">Convocation Hall</span>
+              <span class="link-arrow">Explore →</span>
+            </div>
+          </div>
+
+          <!-- Pillar 5 -->
+          <div class="pillar-card" data-sfx="hover">
+            <div class="card-glow"></div>
+            <div class="pillar-top">
+              <div class="pillar-icon-box">
+                <svg viewBox="0 0 24 24" width="30" height="30" stroke="#F5A623" stroke-width="2" fill="none">
+                  <path d="m18 16 4-4-4-4"/>
+                  <path d="m6 8-4 4 4 4"/>
+                  <path d="m14.5 4-5 16"/>
+                </svg>
+              </div>
+              <span class="pillar-code">SEG-05</span>
+            </div>
+            <h3 class="pillar-title">Hands-On Tech Workshops</h3>
+            <p class="pillar-desc">
+              Master Agentic AI, Large Language Models, ROS2 Robotics, Quantum Algorithms, and Cyber Defense with direct certification from IIT Bombay mentors and industry leaders.
+            </p>
+            <div class="pillar-footer">
+              <span class="tag-pill">IITB Certified</span>
+              <span class="link-arrow">Explore →</span>
+            </div>
+          </div>
+
+          <!-- Pillar 6 -->
+          <div class="pillar-card" data-sfx="hover">
+            <div class="card-glow"></div>
+            <div class="pillar-top">
+              <div class="pillar-icon-box">
+                <svg viewBox="0 0 24 24" width="30" height="30" stroke="#00D2C4" stroke-width="2" fill="none">
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                  <line x1="8" y1="21" x2="16" y2="21"/>
+                  <line x1="12" y1="17" x2="12" y2="21"/>
+                </svg>
+              </div>
+              <span class="pillar-code">SEG-06</span>
+            </div>
+            <h3 class="pillar-title">TechConnect & ResCon</h3>
+            <p class="pillar-desc">
+              Unveiling 140+ patented research prototypes developed indigenously inside IIT Bombay's premier laboratories, accompanied by an early-stage deep-tech startup summit.
+            </p>
+            <div class="pillar-footer">
+              <span class="tag-pill">R&D Prototypes</span>
+              <span class="link-arrow">Explore →</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE COMPETITIONS SECTION -->
+    <section class="section-wrap alt-bg" id="competitions">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">02 // COMBAT & CODE ARENA</div>
+          <h2 class="section-heading">FLAGSHIP COMPETITIONS</h2>
+          <p class="section-subtext">Filter across categories and claim your stake in the ₹50 Lakhs prize purse.</p>
+
+          <!-- Competition Filter Buttons -->
+          <div class="filter-controls" id="compFilters">
+            <button class="filter-btn active" data-filter="all" data-sfx="click">All Challenges</button>
+            <button class="filter-btn" data-filter="robotics" data-sfx="click">Robotics & Combat</button>
+            <button class="filter-btn" data-filter="coding" data-sfx="click">AI & Coding</button>
+            <button class="filter-btn" data-filter="aerospace" data-sfx="click">Aerospace & UAV</button>
+            <button class="filter-btn" data-filter="innovation" data-sfx="click">Social Innovation</button>
+          </div>
+        </div>
+
+        <div class="competitions-grid" id="compGrid">
+          <!-- Card 1 -->
+          <div class="comp-card" data-category="robotics">
+            <div class="comp-badge-top">FLAGSHIP COMBAT</div>
+            <div class="comp-body">
+              <div class="comp-prize">₹ 15,00,000</div>
+              <h3 class="comp-title">International Robowars</h3>
+              <p class="comp-desc">
+                The pinnacle of kinetic metal warfare. Autonomous & RC 60kg bots clash in a heavy-steel enclosed arena under high pneumatic and spinning blade regulations.
+              </p>
+              <div class="comp-meta">
+                <span><strong>Team:</strong> 1 - 8 Pilots</span>
+                <span><strong>Venue:</strong> Gymkhana Dome</span>
+              </div>
+            </div>
+            <div class="comp-actions">
+              <button class="btn btn-primary comp-reg-btn register-modal-trigger" data-event="International Robowars" data-sfx="click">REGISTER BOT</button>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="comp-card" data-category="coding">
+            <div class="comp-badge-top">AGENTIC AI</div>
+            <div class="comp-body">
+              <div class="comp-prize">₹ 3,50,000</div>
+              <h3 class="comp-title">ZeroCode: Prompt Hackathon</h3>
+              <p class="comp-desc">
+                Design multi-agent generative systems and autonomous code architectures using frontier models without writing classical boilerplate.
+              </p>
+              <div class="comp-meta">
+                <span><strong>Team:</strong> 1 - 4 Devs</span>
+                <span><strong>Venue:</strong> Virtual + Campus Final</span>
+              </div>
+            </div>
+            <div class="comp-actions">
+              <button class="btn btn-primary comp-reg-btn register-modal-trigger" data-event="ZeroCode Hackathon" data-sfx="click">ENTER CHALLENGE</button>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="comp-card" data-category="aerospace">
+            <div class="comp-badge-top">UAV AUTONOMY</div>
+            <div class="comp-body">
+              <div class="comp-prize">₹ 4,00,000</div>
+              <h3 class="comp-title">CoDrone Autonomous Flight</h3>
+              <p class="comp-desc">
+                Navigate complex 3D obstacle corridors autonomously using onboard computer vision, LiDAR telemetry, and real-time edge trajectory planning.
+              </p>
+              <div class="comp-meta">
+                <span><strong>Team:</strong> 2 - 5 Engineers</span>
+                <span><strong>Venue:</strong> Indoor Flight Arena</span>
+              </div>
+            </div>
+            <div class="comp-actions">
+              <button class="btn btn-primary comp-reg-btn register-modal-trigger" data-event="CoDrone Flight" data-sfx="click">SUBMIT TELEMETRY</button>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="comp-card" data-category="robotics">
+            <div class="comp-badge-top">PRECISION SPEED</div>
+            <div class="comp-body">
+              <div class="comp-prize">₹ 2,50,000</div>
+              <h3 class="comp-title">Meshmerize: Maze Solver</h3>
+              <p class="comp-desc">
+                Micro-controller driven high-speed line tracers and micromouse algorithms solving dynamic grid mazes with sub-millisecond PID response times.
+              </p>
+              <div class="comp-meta">
+                <span><strong>Team:</strong> 1 - 4 Builders</span>
+                <span><strong>Venue:</strong> Tech Pavilion</span>
+              </div>
+            </div>
+            <div class="comp-actions">
+              <button class="btn btn-primary comp-reg-btn register-modal-trigger" data-event="Meshmerize" data-sfx="click">REGISTER BOT</button>
+            </div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="comp-card" data-category="innovation">
+            <div class="comp-badge-top">NATIONAL POLICY</div>
+            <div class="comp-body">
+              <div class="comp-prize">₹ 5,00,000</div>
+              <h3 class="comp-title">India @100 Innovation Challenge</h3>
+              <p class="comp-desc">
+                Architect deployable solutions in renewable smart grids, agricultural micro-drones, and clean water telemetry to shape India's century vision.
+              </p>
+              <div class="comp-meta">
+                <span><strong>Team:</strong> 2 - 6 Innovators</span>
+                <span><strong>Venue:</strong> Res-Con Auditorium</span>
+              </div>
+            </div>
+            <div class="comp-actions">
+              <button class="btn btn-primary comp-reg-btn register-modal-trigger" data-event="India @100" data-sfx="click">PITCH SOLUTION</button>
+            </div>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="comp-card" data-category="coding">
+            <div class="comp-badge-top">CYBER DEFENSE</div>
+            <div class="comp-body">
+              <div class="comp-prize">₹ 3,00,000</div>
+              <h3 class="comp-title">Techfest 24H CTF Arena</h3>
+              <p class="comp-desc">
+                Reverse engineer binaries, exploit kernel vulnerabilities, solve cryptographic challenges, and secure web microservices in a 24-hour red-vs-blue clash.
+              </p>
+              <div class="comp-meta">
+                <span><strong>Team:</strong> 1 - 4 Hackers</span>
+                <span><strong>Venue:</strong> Computer Science Lab</span>
+              </div>
+            </div>
+            <div class="comp-actions">
+              <button class="btn btn-primary comp-reg-btn register-modal-trigger" data-event="CTF Arena" data-sfx="click">REGISTER SQUAD</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- KEYNOTE LUMINARIES -->
+    <section class="section-wrap" id="keynotes">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">03 // INTELLECTUAL CONCLAVE</div>
+          <h2 class="section-heading">LUMINARIES & KEYNOTE VISIONARIES</h2>
+          <p class="section-subtext">Direct dialogues with Nobel laureates, space commanders, industry founders, and nation builders.</p>
+        </div>
+
+        <div class="speakers-grid">
+          <!-- Speaker 1 -->
+          <div class="speaker-card" data-sfx="hover">
+            <div class="speaker-avatar-frame">
+              <div class="speaker-avatar-ph">
+                <span class="speaker-initials">DSK</span>
+              </div>
+              <div class="speaker-scanline"></div>
+              <span class="speaker-role-chip">DEFENCE & AEROSPACE</span>
+            </div>
+            <div class="speaker-info">
+              <h3 class="speaker-name">Dr. Samir V. Kamat</h3>
+              <p class="speaker-title">Chairman, DRDO & Secretary, Department of Defence R&D</p>
+              <p class="speaker-topic">"Indigenous Hypersonics and Autonomous Defense Technologies for 2047"</p>
+              <div class="speaker-badge">Convocation Hall // Keynote 01</div>
+            </div>
+          </div>
+
+          <!-- Speaker 2 -->
+          <div class="speaker-card" data-sfx="hover">
+            <div class="speaker-avatar-frame">
+              <div class="speaker-avatar-ph">
+                <span class="speaker-initials">NRN</span>
+              </div>
+              <div class="speaker-scanline"></div>
+              <span class="speaker-role-chip">INDUSTRY ARCHITECT</span>
+            </div>
+            <div class="speaker-info">
+              <h3 class="speaker-name">N.R. Narayana Murthy</h3>
+              <p class="speaker-title">Founder, Infosys & Pioneer of Global IT</p>
+              <p class="speaker-topic">"Fostering Radical Integrity and Scalable Innovation in Indian Youth"</p>
+              <div class="speaker-badge">Grand Auditorium // Keynote 02</div>
+            </div>
+          </div>
+
+          <!-- Speaker 3 -->
+          <div class="speaker-card" data-sfx="hover">
+            <div class="speaker-avatar-frame">
+              <div class="speaker-avatar-ph">
+                <span class="speaker-initials">ISRO</span>
+              </div>
+              <div class="speaker-scanline"></div>
+              <span class="speaker-role-chip">COSMIC EXPLORATION</span>
+            </div>
+            <div class="speaker-info">
+              <h3 class="speaker-name">Gaganyaan Astronauts</h3>
+              <p class="speaker-title">Designate Astronaut Wing Commanders // Indian Air Force & ISRO</p>
+              <p class="speaker-topic">"Human Spaceflight & The Future of India's Bharatiya Antariksha Station"</p>
+              <div class="speaker-badge">Space Symposium // Keynote 03</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TECHNOHOLIX SHOWCASE -->
+    <section class="section-wrap alt-bg" id="technoholix">
+      <div class="container">
+        <div class="techno-banner">
+          <div class="techno-content">
+            <span class="techno-badge">AFTER-HOURS SPECTACLE // FREE ENTRY WITH PASS</span>
+            <h2 class="techno-title">TECHNOHOLIX 2025</h2>
+            <p class="techno-text">
+              When the sunset cascades over Powai Lake, Techfest transforms into an audiovisual wonderland. Experience India's grandest synchronized 500-drone swarm, 360-degree laser mapping, holographic kinetic sculptures, and international electronic music headliners.
+            </p>
+            <div class="techno-stats">
+              <div class="t-stat">
+                <span class="t-val">500+</span>
+                <span class="t-lbl">Swarm Drones</span>
+              </div>
+              <div class="t-stat">
+                <span class="t-val">40k+</span>
+                <span class="t-lbl">Arena Crowd</span>
+              </div>
+              <div class="t-stat">
+                <span class="t-val">3</span>
+                <span class="t-lbl">Nights of EDM</span>
+              </div>
+            </div>
+            <button class="btn btn-primary register-modal-trigger" data-event="Technoholix Night Access" data-sfx="click">RESERVE ARENA SEATS</button>
+          </div>
+          <div class="techno-graphic">
+            <!-- Pure CSS & SVG Cyber Visualizer -->
+            <div class="cyber-soundwave-sphere">
+              <div class="ring ring-1"></div>
+              <div class="ring ring-2"></div>
+              <div class="ring ring-3"></div>
+              <div class="center-core">
+                <span>TECHNOHOLIX</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE 3-DAY SCHEDULE -->
+    <section class="section-wrap" id="schedule">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">04 // MISSION TIMELINE</div>
+          <h2 class="section-heading">FESTIVAL ITINERARY</h2>
+          <p class="section-subtext">Explore daily schedules across all arenas, pavilions, and lecture theatres.</p>
+
+          <div class="day-tabs" id="dayTabs">
+            <button class="day-tab active" data-day="day1" data-sfx="click">DAY 01 // DEC 22 (INCEPTION)</button>
+            <button class="day-tab" data-day="day2" data-sfx="click">DAY 02 // DEC 23 (VELOCITY)</button>
+            <button class="day-tab" data-day="day3" data-sfx="click">DAY 03 // DEC 24 (APEX)</button>
+          </div>
+        </div>
+
+        <div class="timeline-container" id="timelineContainer">
+          <!-- Day 1 Schedule -->
+          <div class="day-schedule active" id="day1">
+            <div class="schedule-item">
+              <div class="item-time">09:30 AM</div>
+              <div class="item-marker"></div>
+              <div class="item-card">
+                <div class="item-header">
+                  <span class="item-tag tag-blue">INAUGURAL</span>
+                  <span class="item-venue">Convocation Hall</span>
+                </div>
+                <h4 class="item-title">Grand Ceremonial Opening & Inaugural Lamp Lighting</h4>
+                <p class="item-desc">Opening addresses by Director IIT Bombay, Dr. Samir V. Kamat (DRDO), and Patronage council.</p>
+              </div>
+            </div>
+
+            <div class="schedule-item">
+              <div class="item-time">11:30 AM</div>
+              <div class="item-marker"></div>
+              <div class="item-card">
+                <div class="item-header">
+                  <span class="item-tag tag-purple">FLAGSHIP COMBAT</span>
+                  <span class="item-venue">Gymkhana Arena</span>
+                </div>
+                <h4 class="item-title">International Robowars: Qualifier Rounds (60kg & 15kg)</h4>
+                <p class="item-desc">High-voltage 3-minute combat clashes between top collegiate and international bot engineering teams.</p>
+              </div>
+            </div>
+
+            <div class="schedule-item">
+              <div class="item-time">02:30 PM</div>
+              <div class="item-marker"></div>
+              <div class="item-card">
+                <div class="item-header">
+                  <span class="item-tag tag-teal">HUMANOID DEMO</span>
+                  <span class="item-venue">Exhibition Pavilion</span>
+                </div>
+                <h4 class="item-title">Unitree G1 Humanoid Robot: Autonomous Kinetic Demonstration</h4>
+                <p class="item-desc">Live agility maneuvers, teleoperation, and computer vision interactive test runs.</p>
+              </div>
+            </div>
+
+            <div class="schedule-item">
+              <div class="item-time">07:00 PM</div>
+              <div class="item-marker"></div>
+              <div class="item-card">
+                <div class="item-header">
+                  <span class="item-tag tag-magenta">NIGHT SPECTACLE</span>
+                  <span class="item-venue">Main Grounds</span>
+                </div>
+                <h4 class="item-title">Technoholix Night 01: Laser Projection Odyssey & Pyro-Technics</h4>
+                <p class="item-desc">Synchronized laser symphony and electronic ambient soundscapes under the stars.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Day 2 Schedule -->
+          <div class="day-schedule" id="day2">
+            <div class="schedule-item">
+              <div class="item-time">10:00 AM</div>
+              <div class="item-marker"></div>
+              <div class="item-card">
+                <div class="item-header">
+                  <span class="item-tag tag-teal">AEROSPACE</span>
+                  <span class="item-venue">Flight Deck 02</span>
+                </div>
+                <h4 class="item-title">CoDrone Autonomous UAV Obstacle Navigation</h4>
+                <p class="item-desc">Quadcopters traversing complex 3D laser-mapped obstacle gates with zero human pilot latency.</p>
+              </div>
+            </div>
+
+            <div class="schedule-item">
+              <div class="item-time">01:30 PM</div>
+              <div class="item-marker"></div>
+              <div class="item-card">
+                <div class="item-header">
+                  <span class="item-tag tag-blue">SPACE CONCLAVE</span>
+                  <span class="item-venue">Convocation Hall</span>
+                </div>
+                <h4 class="item-title">Space Symposium: Gaganyaan Mission & Astronaut Conclave</h4>
+                <p class="item-desc">Direct address by ISRO leadership and Indian Astronaut designates on human spaceflight.</p>
+              </div>
+            </div>
+
+            <div class="schedule-item">
+              <div class="item-time">07:30 PM</div>
+              <div class="item-marker"></div>
+              <div class="item-card">
+                <div class="item-header">
+                  <span class="item-tag tag-magenta">NIGHT SPECTACLE</span>
+                  <span class="item-venue">Main Grounds</span>
+                </div>
+                <h4 class="item-title">Technoholix Night 02: 500-Autonomous Drone Swarm Formation</h4>
+                <p class="item-desc">Breathtaking aerial choreography depicting space travel, robotics, and Indian heritage.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Day 3 Schedule -->
+          <div class="day-schedule" id="day3">
+            <div class="schedule-item">
+              <div class="item-time">11:00 AM</div>
+              <div class="item-marker"></div>
+              <div class="item-card">
+                <div class="item-header">
+                  <span class="item-tag tag-purple">GRAND FINALS</span>
+                  <span class="item-venue">Gymkhana Arena</span>
+                </div>
+                <h4 class="item-title">International Robowars Championship: The Apex Showdown</h4>
+                <p class="item-desc">The ultimate final battles crowning the champion bot builder of Asia.</p>
+              </div>
+            </div>
+
+            <div class="schedule-item">
+              <div class="item-time">04:00 PM</div>
+              <div class="item-marker"></div>
+              <div class="item-card">
+                <div class="item-header">
+                  <span class="item-tag tag-blue">AWARDS</span>
+                  <span class="item-venue">Convocation Hall</span>
+                </div>
+                <h4 class="item-title">Grand Valedictory Ceremony & Prize Distribution</h4>
+                <p class="item-desc">Awarding ₹50,00,000+ prize purses, trophies, and IIT Bombay excellence medals.</p>
+              </div>
+            </div>
+
+            <div class="schedule-item">
+              <div class="item-time">08:00 PM</div>
+              <div class="item-marker"></div>
+              <div class="item-card">
+                <div class="item-header">
+                  <span class="item-tag tag-magenta">GRAND FINALE</span>
+                  <span class="item-venue">Main Grounds</span>
+                </div>
+                <h4 class="item-title">Technoholix EDM Finale: International Headliner Live</h4>
+                <p class="item-desc">The legendary Techfest closing party featuring stadium sound and visual immersion.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CAMPUS AMBASSADOR (CA) SECTION -->
+    <section class="section-wrap" id="ca-portal">
+      <div class="container">
+        <div class="ca-card">
+          <div class="ca-body">
+            <span class="ca-chip">CAMPUS AMBASSADOR INITIATIVE</span>
+            <h2 class="ca-title">LEAD TECHFEST IN YOUR COLLEGE</h2>
+            <p class="ca-desc">
+              Become the official face and driving force of Asia's Largest Science & Technology Festival at your campus. Earn official certifications signed by IIT Bombay authorities, fully sponsored trips, internship opportunities, and VIP all-access passes.
+            </p>
+            <div class="ca-perks">
+              <div class="perk-item">
+                <span class="perk-check">✓</span>
+                <span>Certificate of Excellence from IIT Bombay</span>
+              </div>
+              <div class="perk-item">
+                <span class="perk-check">✓</span>
+                <span>Free Accommodation & Travel Grants</span>
+              </div>
+              <div class="perk-item">
+                <span class="perk-check">✓</span>
+                <span>Direct Access to Industry Mentors & Internships</span>
+              </div>
+              <div class="perk-item">
+                <span class="perk-check">✓</span>
+                <span>VIP Backstage Passes to Technoholix EDM</span>
+              </div>
+            </div>
+            <button class="btn btn-primary register-modal-trigger" data-event="Campus Ambassador Application" data-sfx="click">APPLY AS CAMPUS AMBASSADOR</button>
+          </div>
+          <div class="ca-stats-box">
+            <div class="ca-hud-ring">
+              <span class="ca-big-num">2,500+</span>
+              <span class="ca-sub-lbl">AMBASSADORS NATIONWIDE</span>
+            </div>
+            <div class="ca-badge-grid">
+              <div class="mini-badge">Exclusive Swag</div>
+              <div class="mini-badge">Leadership Credits</div>
+              <div class="mini-badge">IITB Campus Host</div>
+              <div class="mini-badge">Networking Vault</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="cyber-footer">
+    <div class="container footer-grid">
+      <div class="footer-col brand-col">
+        <div class="brand-logo footer-logo">
+          <svg viewBox="0 0 40 40" class="hex-logo" width="32" height="32" fill="none">
+            <polygon points="20,2 38,11 38,29 20,38 2,29 2,11" stroke="#00F0FF" stroke-width="2" fill="rgba(0, 240, 255, 0.1)"/>
+            <circle cx="20" cy="20" r="3.5" fill="#00F0FF"/>
+          </svg>
+          <div class="brand-text">
+            <span class="main-title">TECHFEST</span>
+            <span class="sub-badge">IIT BOMBAY</span>
+          </div>
+        </div>
+        <p class="footer-tagline">
+          Asia's Largest Science & Technology Festival. Empowering inquisitive minds, cutting-edge researchers, and builders worldwide since 1998.
+        </p>
+        <div class="footer-credit">
+          CA Program Special Assignment Submission // Official Web Ideation
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-col-title">FESTIVAL SEGMENTS</h4>
+        <ul class="footer-links">
+          <li><a href="#competitions">International Robowars</a></li>
+          <li><a href="#competitions">ZeroCode AI Hackathon</a></li>
+          <li><a href="#technoholix">Technoholix EDM & Lasers</a></li>
+          <li><a href="#workshops">IIT Bombay Workshops</a></li>
+          <li><a href="#keynotes">World Keynote Conclave</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-col-title">CAMPUS & PORTAL</h4>
+        <ul class="footer-links">
+          <li><a href="#ca-portal">Campus Ambassador Hub</a></li>
+          <li><a href="#schedule">Festival Itinerary</a></li>
+          <li><a href="https://techfest.org" target="_blank" rel="noopener">techfest.org (Official)</a></li>
+          <li><a href="https://iitb.ac.in" target="_blank" rel="noopener">IIT Bombay Portal</a></li>
+          <li><a href="#hero">Accommodations & Travel</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-col-title">LOCATION & VENUE</h4>
+        <p class="footer-address">
+          Students' Activity Centre (SAC),<br>
+          Indian Institute of Technology Bombay,<br>
+          Powai, Mumbai, Maharashtra 400076, India.
+        </p>
+        <div class="footer-socials">
+          <a href="https://instagram.com/techfest_iitbombay" target="_blank" rel="noopener" class="social-icon" title="Instagram">IG</a>
+          <a href="https://twitter.com/Techfest_IITB" target="_blank" rel="noopener" class="social-icon" title="Twitter/X">X</a>
+          <a href="https://linkedin.com/company/techfest" target="_blank" rel="noopener" class="social-icon" title="LinkedIn">IN</a>
+          <a href="https://youtube.com/techfestiitbombay" target="_blank" rel="noopener" class="social-icon" title="YouTube">YT</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <span>&copy; 2025 Techfest IIT Bombay. All rights reserved.</span>
+        <span>Built with high-performance 2D Canvas & Pure CSS // No 3D Assets</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- REGISTRATION / PASS MODAL -->
+  <div class="cyber-modal" id="regModal" aria-hidden="true">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <div class="modal-dialog">
+      <div class="modal-hud-corners">
+        <span class="mc mc-tl"></span>
+        <span class="mc mc-tr"></span>
+        <span class="mc mc-bl"></span>
+        <span class="mc mc-br"></span>
+      </div>
+
+      <button class="modal-close" id="modalCloseBtn">&times;</button>
+
+      <div class="modal-header">
+        <span class="modal-badge">TECHFEST 2025 // SECURE GATEWAY</span>
+        <h3 class="modal-title">FESTIVAL PASS REGISTRATION</h3>
+        <p class="modal-sub">Register for all-access passes, competition entries, or CA credit program.</p>
+      </div>
+
+      <form class="modal-form" id="regForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fullName">Full Name *</label>
+            <input type="text" id="fullName" class="form-input" placeholder="e.g. Aryan Sharma" required>
+          </div>
+          <div class="form-group">
+            <label for="emailAddr">Institutional / Personal Email *</label>
+            <input type="email" id="emailAddr" class="form-input" placeholder="name@college.edu" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="collegeName">College / Institute *</label>
+            <input type="text" id="collegeName" class="form-input" placeholder="e.g. IIT Bombay / BITS / NIT" required>
+          </div>
+          <div class="form-group">
+            <label for="eventSelect">Select Primary Track *</label>
+            <select id="eventSelect" class="form-input" required>
+              <option value="General Festival Pass">General Festival Pass (All 3 Days)</option>
+              <option value="International Robowars">International Robowars (Combat Arena)</option>
+              <option value="ZeroCode Hackathon">ZeroCode Prompt & AI Hackathon</option>
+              <option value="CoDrone Flight">CoDrone Autonomous Drone Challenge</option>
+              <option value="Meshmerize">Meshmerize Maze Solver</option>
+              <option value="India @100">India @100 Social Innovation</option>
+              <option value="Technoholix Night Access">Technoholix EDM & Drone Arena Access</option>
+              <option value="Campus Ambassador Application">Campus Ambassador (CA) Application</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="caCode">CA Referral Code (Optional)</label>
+          <input type="text" id="caCode" class="form-input" placeholder="e.g. TF-CA-2025">
+          <span class="input-hint">Enter your Campus Ambassador's code to grant them credit points.</span>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block" id="submitRegBtn" data-sfx="click">
+          <span>CLAIM ACCESS PASS</span>
+          <span class="btn-arrow">→</span>
+        </button>
+      </form>
+
+      <!-- Confirmation Card (Hidden by default) -->
+      <div class="modal-success" id="modalSuccess" style="display: none;">
+        <div class="success-icon">✓</div>
+        <h3 class="success-title">REGISTRATION CONFIRMED</h3>
+        <p class="success-text" id="successDetail">
+          Your festival credentials have been generated and dispatched to your email. Show this digital pass at the IIT Bombay Main Gate entry scanner.
+        </p>
+        <div class="pass-stub">
+          <div class="pass-qr-ph">
+            <svg viewBox="0 0 100 100" width="80" height="80">
+              <rect x="0" y="0" width="100" height="100" fill="#030712"/>
+              <rect x="10" y="10" width="25" height="25" fill="#00F0FF"/>
+              <rect x="15" y="15" width="15" height="15" fill="#030712"/>
+              <rect x="65" y="10" width="25" height="25" fill="#00F0FF"/>
+              <rect x="70" y="15" width="15" height="15" fill="#030712"/>
+              <rect x="10" y="65" width="25" height="25" fill="#00F0FF"/>
+              <rect x="15" y="70" width="15" height="15" fill="#030712"/>
+              <rect x="42" y="10" width="10" height="20" fill="#00F0FF"/>
+              <rect x="42" y="42" width="16" height="16" fill="#00F0FF"/>
+              <rect x="65" y="42" width="25" height="10" fill="#00F0FF"/>
+              <rect x="42" y="70" width="20" height="20" fill="#00F0FF"/>
+              <rect x="70" y="70" width="20" height="10" fill="#00F0FF"/>
+            </svg>
+          </div>
+          <div class="pass-info">
+            <span class="p-title" id="passHolderName">ARYAN SHARMA</span>
+            <span class="p-track" id="passTrack">GENERAL ALL-ACCESS PASS</span>
+            <span class="p-id">PASS-ID: TF25-9843-IITB</span>
+          </div>
+        </div>
+        <button class="btn btn-secondary btn-block" id="closeSuccessBtn">RETURN TO PORTAL</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
